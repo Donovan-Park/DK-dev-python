@@ -1,0 +1,36 @@
+<!-- HTML Tag 공부 레퍼런스 : http://www.beautifulcss.com/archives/1452 -->
+
+<!doctype html>
+<!-- 브라우저 탭이나 윈도우 타이틀 표현 -->
+<title> {% block title %}{% endblock %} - Flaskr </title>
+<link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }} ">
+
+<!-- 네비게이션 역할을 담당하는 태그, 메뉴1 메뉴2 메뉴3 요런 느낌 -->
+<nav>
+	<h1>Flaskr</h1>
+	<!-- 순서가 중요하지 않은 목록을 나열할 때 <ul> 태그 -->
+	<ul>
+		{% if g.user %}
+			<!-- 각 목록의 내용을 나타내는 <li> 태그 안에은 보통 각 목록의 링크를 달아 놓음 -->
+			<!-- <span> 태그는 옆으로 나열 / 문장 단위로 텍스트 박스를 형성-->
+			<li><span>{{ g.user["username"] }}</span></li>
+			<!--- <a> 태그는 링크 -->
+			<li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+		{% else %}
+			<li><a href="{{ url_for('auth.register') }}">Register</a></li>
+			<li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+		{% endif %}
+	</ul>
+</nav>
+
+<section class="content">
+	<header>
+		<!-- 타이틀과 유사하지만, 헤더는 페이지의 타이틀이 바뀔 수 있음 -->
+		{% block header %} {% endblock %}
+	</header>
+	{% for message in get_flashed_messages() %}
+		<!-- <div> 태그는 한줄 씩 나열 / 줄 단위로 텍스트 박스 형성-->
+		<div class="flash">{{ message }}</div>
+	{% endfor %}
+	{% block content %}{% endblock %}
+</section>

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+	<h1>{% block title %}
+		Register
+	{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+	<!-- POST 는 서버에 값을 "숨겨서" 보낸다, GET 은 서버에 값을 URL에 포함시켜 보낸다. - 검색엔진에 검색이 가능하고, URL로 실행가능하므로 '글삭제' 같은 기능을 구현하면 막 지워질 수 있음 -->
+
+	<!-- 데이터를 주고 받을 경우에는 <form> 태그를 사용할 것을 권장 -->
+	<form method="post">
+		<!-- <label> 태그의 경우 <input> 태그를 사용할 때 반드시 사용할 것을 권장, <input> 태그와 'id' 속성으로 연결해주는 것이 중요, 연결하면 레이블을 클릭했을 때 인풋 창으로 커서가 이동 -->
+		<label for="username">Username</label>
+		<input name="username" id="username" required>
+		<label for="password">Password</label>
+		<input type="password" name="password" id="password" required>
+		<input type="submit" value="Register">
+	</form>
+{% endblock %}
+
+
+<!-- 공부자료 : 1. http://webberstudy.com/html-css/html-3/form-1/ -->
