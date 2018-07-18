@@ -1,0 +1,6 @@
+플라스크 프로젝트 폴더 경로에서 아래 스크립트 실행
+
+export FLASK_APP=<플라스크 프로젝트 명>
+export FLASK_ENV=development
+source flask/bin/activate
+flask run
